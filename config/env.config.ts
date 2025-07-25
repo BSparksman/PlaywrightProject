@@ -1,4 +1,4 @@
-//ENV_NAME=dev npx playwright test
+// $env:ENV_NAME="dev"; npx playwright test
 
 
 export type EnvConfig = {
