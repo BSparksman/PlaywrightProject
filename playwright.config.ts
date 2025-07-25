@@ -1,5 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
-import { getEnv } from './env.config';
+import { getEnvConfig } from './config/env.config';
 
 export default defineConfig({
     testDir: './tests',
@@ -8,9 +8,10 @@ export default defineConfig({
     retries: process.env.CI ? 1 : 0,
     workers: process.env.CI ? 1 : undefined,
     reporter: [['html', { outputFolder: 'playwright-report', open: 'never' }]],
+    globalSetup: require.resolve('./global-setup'),
 
     use: {
-        baseURL: getEnv().baseUrl,
+        baseURL: getEnvConfig().baseUrl,
         trace: 'on-first-retry',
         screenshot: 'only-on-failure',
         video: 'retain-on-failure',
@@ -30,7 +31,4 @@ export default defineConfig({
             use: { ...devices['Desktop Safari'] },
         },
     ],
-
-    // Optional: Add global setup for environment reachability
-    globalSetup: require.resolve('./global-setup'),
 });
