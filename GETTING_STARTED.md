@@ -8,11 +8,9 @@ This guide helps team members set up their local environment, run tests across s
 
 ## 📥 Getting Started
 
-Clone the repository and switch to the automation branch:
+Clone the repository:
 
-- `git clone https://github.com/<your-username>/<repo-name>.git`
-- `cd <repo-name>`
-- `git checkout feature/test-automation-exercise`
+- `git clone https://github.com/BSparksman/PlaywrightProject`
 
 ---
 

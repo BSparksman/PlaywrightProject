@@ -4,7 +4,11 @@
 		"module": "CommonJS",
 		"strict": true,
 		"esModuleInterop": true,
-		"outDir": "dist"
+		"outDir": "dist",
+		"paths": {
+			"@utils/*": [ "utils/*" ],
+			"@pages/*": [ "pages/*" ]
+		}
 	},
 	"include": [ "playwright.config.ts", "tests", "pages", "utils", "config" ]
 }

@@ -1,5 +1,3 @@
-//ENV_URL=https://staging.automationexercise.com npx playwright test
-
 import { isSiteUp } from './utils/isSiteUp';
 import { getEnvConfig } from './config/env.config';
 
