@@ -18,6 +18,13 @@
   - Reproducible:
 	- Yes, every time I try to edit the quantity.
 
+- Issue 3:
+  - Description:
+	- Responsive layout is poor on mobile devices. The navigation items overlaps with the content.
+  - Found by: Exploring the site on using responsive layout.
+  - Reproducible:
+	- Yes, every time the site is viewed on a mobile device or responsive layout.
+
 ---
 
 ## Links

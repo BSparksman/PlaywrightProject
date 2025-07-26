@@ -1,5 +1,7 @@
 import { test } from '@playwright/test';
 import { HomePage } from '@pages/HomePage';
+import { CartPage } from '@pages/CartPage';
+import { clickByText } from '@utils/baseHelpers'; 
 import { Navigation } from '../../components/navigation';
 import { createUser } from '@utils/userFactory';
 
@@ -11,14 +13,19 @@ test.beforeEach(async ({ page }) => {
 test('Place Order: Register While Checkout', async ({ page }) => {
 	const user = createUser();
 	const home = new HomePage(page);
+	const cart = new CartPage(page);
     const navigation = new Navigation(page);
 
-	//await home.visitHome();
 	await home.assertHomeLinkHasFocus();
+	await navigation.expectOnPage('');
+	await navigation.assertNavLinkHasFocus('Home');
 	await home.AddProductToCart("Frozen Tops For Kids");
-	//await home.viewCart();
 	await navigation.clickCart();
-	//6. Verify that cart page is displayed
+	await navigation.assertNavLinkHasFocus('Cart');
+	await navigation.expectOnPage('view_cart');
+    await clickByText(page, 'Proceed To Checkout');
+
+	await cart.assertItemInCart("Frozen Tops For Kids", "",	"", "");
 	//7. Click Proceed To Checkout
 	//8. Click 'Register / Login' button
 	//9. Fill all details in Signup and create account

@@ -4,10 +4,6 @@ import { clickByText, scrollAndClickElement } from '@utils/baseHelpers';
 export class HomePage {
     constructor(private page: Page) { }
 
-    async visitHome() {
-        await this.page.goto('/');
-    }
-
     async assertHomeLinkHasFocus() {
         const homeLink = this.page.getByRole('link', { name: 'Home' });
         const color = await homeLink.evaluate((el) => getComputedStyle(el).color);
@@ -26,7 +22,7 @@ export class HomePage {
     }
 
     async AddProductToCart(productName: string): Promise<void> {
-        const xpath = `(//div[@class='features_items']//p[text()='${productName}'])[1]`;
+        const xpath = `(//div[@class='features_items']//p[text()='${productName}']/following-sibling::a)[1]`;
         await scrollAndClickElement(this.page, xpath);
     }
 
