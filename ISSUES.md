@@ -1,32 +1,22 @@
 # Issues
 
-## Exercise Instructions
-
-- This section is optional.
-- Use this page to document any issues related to the application that need to be fixed.
-- Issues can be identified at any point, so they do not need to be part of the automated test.
-
-When documenting issues, please include:
-
-- A brief description of the issue.
-- How it was found (e.g., automated test, exploratory testing, observation while coding, etc.).
-- Whether it is reproducible.
-
-Feel free to add more details as necessary.
-
-**Note:** Remove this section after completing the exercise.
-
 ## Documented Issues
 
 - Issue 1:
   - Description:
-  - Found by:
+	- There is poor styling on the main navigation. Each buttons text is preceded by a [space] character, which is not ideal.
+  - Found by: 
+	- I noticed the issue while writting the xpath for the main navigation test code.
   - Reproducible:
+	- Yes, every time the page is loaded.
 
 - Issue 2:
   - Description:
+	- Unable to edit the quantity of items in the cart. The input field does not accept any changes.
   - Found by:
+	- Exploring the cart functionality, I tried to change the quantity of an item.
   - Reproducible:
+	- Yes, every time I try to edit the quantity.
 
 ---
 

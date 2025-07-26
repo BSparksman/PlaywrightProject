@@ -10,5 +10,5 @@
 			"@pages/*": [ "pages/*" ]
 		}
 	},
-	"include": [ "playwright.config.ts", "tests", "pages", "utils", "config" ]
+	"include": [ "playwright.config.ts", "tests", "pages", "components", "utils", "config" ]
 }
