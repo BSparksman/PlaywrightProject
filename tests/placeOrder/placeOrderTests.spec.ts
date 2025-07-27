@@ -2,9 +2,11 @@ import { test } from '@playwright/test';
 import { HomePage } from '@pages/HomePage';
 import { AddedToCartModal } from '@modals/addedToCartModal';
 import { CheckoutModal } from '@modals/checkoutModal';
+import { CheckoutPage } from '@pages/CheckoutPage';
 import { CartPage } from '@pages/CartPage';
 import { LoginPage } from '@pages/LoginPage';
 import { Navigation } from '../../components/navigation';
+import { NavLink } from '@models/navLinks';
 import { createUser } from '@utils/userFactory';
 import { SignUpPage } from '@pages/SignUpPage';
 import { AccountCreatedPage } from '@pages/AccountCreatedPage';
@@ -20,6 +22,7 @@ test('Place Order: Register While Checkout', async ({ page }) => {
 	const home = new HomePage(page);
 	const addedToCartModal = new AddedToCartModal(page);
 	const checkoutModal = new CheckoutModal(page);
+    const checkout = new CheckoutPage(page);
 	const cart = new CartPage(page);
 	const login = new LoginPage(page);
 	const signup = new SignUpPage(page);
@@ -32,6 +35,7 @@ test('Place Order: Register While Checkout', async ({ page }) => {
 	await navigation.assertCartDisplayed();
 
 	await cart.assertItemInCart("Frozen Tops For Kids", "", "", "");
+    // We can either use baseHelpers clickByText or cart.clickProceedToCartButton.
 	await cart.clickByText('Proceed To Checkout');
 
 	await checkoutModal.clickRegisterLoginButton();
@@ -47,12 +51,20 @@ test('Place Order: Register While Checkout', async ({ page }) => {
 	//await navigation.assertCartDisplayed();
 	//await cart.assertItemInCart("Frozen Tops For Kids", "", "", "");
 
-	//11. Verify ' Logged in as username' at top
 	await navigation.assertLoggedInAs(user.name);
 
-	//12.Click 'Cart' button
-	//13. Click 'Proceed To Checkout' button
+	await navigation.clickNavLink(NavLink.Cart);
+	await cart.clickByText('Proceed To Checkout');
+
 	//14. Verify Address Details and Review Your Order
+	await checkout.assertAddressDetails(
+		user.name,
+		user.address,
+		user.city,
+		user.country,
+		user.mobileNumber
+	);
+
 	//15. Enter description in comment text area and click 'Place Order'
 	//16. Enter payment details: Name on Card, Card Number, CVC, Expiration date
 	//17. Click 'Pay and Confirm Order' button

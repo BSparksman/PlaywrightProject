@@ -1,6 +1,6 @@
 import { Page, expect } from '@playwright/test';
 import { getEnvConfig } from '../config/env.config';
-import { NavLink } from '../models/navLinks';
+import { NavLink } from '@models/navLinks';
 
 export class Navigation {
     constructor(private page: Page) { }
@@ -42,7 +42,7 @@ export class Navigation {
     }
 
     async assertLoggedInAs(username: string) {
-        const loggedInText = await this.page.getByText(`Logged in as ${username.toUpperCase()}`);
+        const loggedInText = this.page.getByText(`Logged in as ${username.toUpperCase()}`);
         await expect(loggedInText).toBeVisible();
     }
 }

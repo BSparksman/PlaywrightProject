@@ -43,8 +43,8 @@ export async function clickRadioButtonWithValue(page: Page, radioName: string, v
 }
 
 //select from select dropdown
-export async function selectFromDropdown(page: Page, name: string, value: string): Promise<void> {
-    const xpath = `//select[@name='${name}']`;
+export async function selectFromDropdown(page: Page, selectorId: string, value: string): Promise<void> {
+    const xpath = `//select[@data-qa='${selectorId}']`;
     const dropdown = page.locator(xpath);
     await dropdown.waitFor({ state: 'visible' });
     await dropdown.selectOption(value);

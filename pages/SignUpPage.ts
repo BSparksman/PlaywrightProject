@@ -51,6 +51,11 @@ export class SignUpPage extends BasePage {
         await typeIntoField(this.page, "//input[@data-qa='zipcode']", zipCode);
     }
 
+    // select country from dropdown
+    async selectCountry(country: string): Promise<void> {
+        await selectFromDropdown(this.page, "country", country);
+    }
+
     async enterMobileNumber(mobileNumber: string): Promise<void> {
         await typeIntoField(this.page, "//input[@data-qa='mobile_number']", mobileNumber);
     }
@@ -63,12 +68,12 @@ export class SignUpPage extends BasePage {
     async fillOutSignUpForm(customer: User): Promise<void> {
         await this.clickTitle(customer.title);
         await this.enterPassword(customer.password);
-        await this.selectDay("30");
         await this.enterFirstName(customer.firstName);
         await this.enterLastName(customer.lastName);
         await this.enterAddress(customer.address);
         await this.enterState(customer.state);
         await this.enterCity(customer.city);
+        await this.selectCountry(customer.country);
         await this.enterZipCode(customer.zipCode);
         await this.enterMobileNumber(customer.mobileNumber);
         await this.clickCreateAccountButton();
