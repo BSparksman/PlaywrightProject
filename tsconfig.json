@@ -9,7 +9,8 @@
 			"@utils/*": [ "utils/*" ],
 			"@models/*": [ "models/*" ],
 			"@pages/*": [ "pages/*" ],
-			"@modals/*": [ "pages/modals/*" ]
+			"@modals/*": [ "pages/modals/*" ],
+      "@config/*": [ "config/*" ]
 		}
 	},
 	"include": [ "playwright.config.ts", "tests", "pages", "components", "models", "utils", "config" ]

@@ -1,6 +1,3 @@
-// $env:ENV_NAME="dev"; npx playwright test
-
-
 export type EnvConfig = {
     name: 'dev' | 'test';
     baseUrl: string;

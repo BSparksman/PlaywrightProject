@@ -1,5 +1,4 @@
-import { Page, expect } from '@playwright/test';
-import { clickByText, scrollAndClickElement } from '@utils/baseHelpers';
+import { scrollAndClickElement } from '@utils/baseHelpers';
 import { BasePage } from '@pages/BasePage';
 
 export class HomePage extends BasePage {

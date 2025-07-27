@@ -1,5 +1,4 @@
-import { Page, expect } from '@playwright/test';
-import { clickByText, clickElementByXpath } from '@utils/baseHelpers';
+import { clickElementByXpath } from '@utils/baseHelpers';
 import { BasePage } from '../BasePage';
 
 export class CheckoutModal extends BasePage {

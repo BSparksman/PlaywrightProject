@@ -54,7 +54,7 @@ test('Place Order: Register While Checkout', async ({ page }) => {
 	await navigation.assertLoggedInAs(user.name);
 
 	await navigation.clickNavLink(NavLink.Cart);
-	await cart.clickByText('Proceed To Checkout');
+	await cart.clickProceedToCheckoutButton();
 
 	//14. Verify Address Details and Review Your Order
 	await checkout.assertAddressDetails(
@@ -66,7 +66,6 @@ test('Place Order: Register While Checkout', async ({ page }) => {
 		user.mobileNumber
 	);
 
-	await cart.clickProceedToCheckoutButton();
 	await checkout.enterOrderComment("This is a test order.");
 	await checkout.clickPlaceOrderButton();
 

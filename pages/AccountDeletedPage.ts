@@ -1,4 +1,3 @@
-import { Page, expect } from '@playwright/test';
 import { assertText } from '@utils/baseHelpers';
 import { BasePage } from '@pages/BasePage';
 
