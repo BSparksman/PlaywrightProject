@@ -1,5 +1,5 @@
 import { Page } from '@playwright/test';
-import { clickByText, scrollAndClickElement } from '@utils/baseHelpers';
+import { clickByText } from '@utils/baseHelpers';
 
 export class BasePage {
     constructor(protected page: Page) { }
@@ -9,8 +9,5 @@ export class BasePage {
         await clickByText(this.page, text);
     }
 
-    // Function using baseHelpers to scroll to an element and click it
-    async scrollAndClick(xpath: string) {
-        await scrollAndClickElement(this.page, xpath);
-    }
+    // Add other functions that can be shared across all pages here
 }

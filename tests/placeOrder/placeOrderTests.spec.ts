@@ -58,6 +58,7 @@ test('Place Order: Register While Checkout', async ({ page }) => {
 
 	//14. Verify Address Details and Review Your Order
 	await checkout.assertAddressDetails(
+		user.title,
 		user.name,
 		user.address,
 		user.city,

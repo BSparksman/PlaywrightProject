@@ -39,6 +39,13 @@
   - Reproducible: 
 	- Yes, every time the user logs in after adding an item to the cart.
 
+- Issue 6:
+  - Description:
+	- Customer Title is an optional field but will display a " ." on the Checkout page if not filled in.
+  - Found by: Exploring the site
+  - Reproducible:
+	- Yes, every time the Checkout page is loaded without filling in the Customer Title field.
+
 ---
 
 ## Links

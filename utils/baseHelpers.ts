@@ -57,9 +57,24 @@ export async function getTextByDataQa(page: Page, dataQaId: string): Promise<str
     return await locator.textContent() || '';
 }
 
+// GetText by Xpath
+export async function getTextByXpath(page: Page, xpath: string): Promise<string> {
+    const locator = page.locator(`xpath=${xpath}`);
+    await locator.waitFor({ state: 'visible' });
+    return await locator.textContent() || '';
+}
+
 // asset the text of an element with a data-qa id against expected text.
 export async function assertText(page: Page, dataQaId: string, expectedText: string): Promise<void> {
     const actualText = await getTextByDataQa(page, dataQaId);
+    if (actualText !== expectedText) {
+        throw new Error(`Expected text "${expectedText}" but found "${actualText}"`);
+    }
+}
+
+// Assert text with xpath
+export async function assertTextByXpath(page: Page, xpath: string, expectedText: string): Promise<void> {
+    const actualText = await getTextByXpath(page, xpath);
     if (actualText !== expectedText) {
         throw new Error(`Expected text "${expectedText}" but found "${actualText}"`);
     }
