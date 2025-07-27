@@ -50,4 +50,19 @@ export async function selectFromDropdown(page: Page, name: string, value: string
     await dropdown.selectOption(value);
 }
 
+// Get the text of an element with a daata-qa id
+export async function getTextByDataQa(page: Page, dataQaId: string): Promise<string> {
+    const locator = page.locator(`[data-qa="${dataQaId}"]`);
+    await locator.waitFor({ state: 'visible' });
+    return await locator.textContent() || '';
+}
+
+// asset the text of an element with a data-qa id against expected text.
+export async function assertText(page: Page, dataQaId: string, expectedText: string): Promise<void> {
+    const actualText = await getTextByDataQa(page, dataQaId);
+    if (actualText !== expectedText) {
+        throw new Error(`Expected text "${expectedText}" but found "${actualText}"`);
+    }
+}
+
 

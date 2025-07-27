@@ -1,5 +1,5 @@
 import { Page, expect } from '@playwright/test';
-import { clickByText, scrollAndClickElement, typeIntoField , clickRadioButtonWithValue, selectFromDropdown} from '@utils/baseHelpers';
+import { scrollAndClickElement, typeIntoField , clickRadioButtonWithValue, selectFromDropdown} from '@utils/baseHelpers';
 import { BasePage } from '@pages/BasePage';
 import { User } from '@utils/types';
 

@@ -40,4 +40,9 @@ export class Navigation {
         const { baseUrl } = getEnvConfig();
         await expect(this.page).toHaveURL(`${baseUrl}${path}`);
     }
+
+    async assertLoggedInAs(username: string) {
+        const loggedInText = await this.page.getByText(`Logged in as ${username.toUpperCase()}`);
+        await expect(loggedInText).toBeVisible();
+    }
 }

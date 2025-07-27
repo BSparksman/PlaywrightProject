@@ -32,6 +32,13 @@
   - Reproducible:
 	- Yes, every time the product is hovered over.
 
+- Issue 5:
+  - Description:
+	- The user is not returned to the cart after logging in. This is a poor user experience.
+  - Found by: Exploring the site
+  - Reproducible: 
+	- Yes, every time the user logs in after adding an item to the cart.
+
 ---
 
 ## Links
