@@ -7,8 +7,10 @@
 		"outDir": "dist",
 		"paths": {
 			"@utils/*": [ "utils/*" ],
-			"@pages/*": [ "pages/*" ]
+			"@models/*": [ "models/*" ],
+			"@pages/*": [ "pages/*" ],
+			"@modals/*": [ "pages/modals/*" ]
 		}
 	},
-	"include": [ "playwright.config.ts", "tests", "pages", "components", "utils", "config" ]
+	"include": [ "playwright.config.ts", "tests", "pages", "components", "models", "utils", "config" ]
 }

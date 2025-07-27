@@ -1,19 +1,8 @@
 import { Page, expect } from '@playwright/test';
 import { clickByText, scrollAndClickElement } from '@utils/baseHelpers';
+import { BasePage } from './BasePage';
 
-export class HomePage {
-    constructor(private page: Page) { }
-
-    async assertHomeLinkHasFocus() {
-        const homeLink = this.page.getByRole('link', { name: 'Home' });
-        const color = await homeLink.evaluate((el) => getComputedStyle(el).color);
-        expect(color).toBe('rgb(255, 165, 0)');
-    }
-
-
-    async goToSignup() {
-        await clickByText(this.page, 'Signup / Login');
-    }
+export class HomePage extends BasePage {
 
     // What is the liklyhood that the product name and ID will be required? Maybe we can just use product name?
     async AddProductToCartWithId(productName: string, productId: string): Promise<void> {

@@ -1,9 +1,11 @@
 import { test } from '@playwright/test';
 import { HomePage } from '@pages/HomePage';
+import { AddedToCartModal } from '@modals/addedToCartModal';
+import { CheckoutModal } from '@modals/checkoutModal';
 import { CartPage } from '@pages/CartPage';
-import { clickByText } from '@utils/baseHelpers'; 
 import { Navigation } from '../../components/navigation';
 import { createUser } from '@utils/userFactory';
+import { NavLink } from '@models/navLinks';
 
 
 test.beforeEach(async ({ page }) => {
@@ -13,19 +15,27 @@ test.beforeEach(async ({ page }) => {
 test('Place Order: Register While Checkout', async ({ page }) => {
 	const user = createUser();
 	const home = new HomePage(page);
+	const addedToCartModal = new AddedToCartModal(page);
+    const checkoutModal = new CheckoutModal(page);
 	const cart = new CartPage(page);
     const navigation = new Navigation(page);
 
-	await home.assertHomeLinkHasFocus();
 	await navigation.expectOnPage('');
-	await navigation.assertNavLinkHasFocus('Home');
+	await navigation.assertNavLinkHasFocus(NavLink.Home);
+	// TODO: Dynamic Product Selection: If "Frozen Tops For Kids" changes or disappears, tests may break.
 	await home.AddProductToCart("Frozen Tops For Kids");
-	await navigation.clickCart();
-	await navigation.assertNavLinkHasFocus('Cart');
-	await navigation.expectOnPage('view_cart');
-    await clickByText(page, 'Proceed To Checkout');
+	await addedToCartModal.viewCart();
 
-	await cart.assertItemInCart("Frozen Tops For Kids", "",	"", "");
+	//await navigation.clickNavLink(NavLink.Cart);
+	await navigation.expectOnPage('view_cart');
+	await navigation.assertNavLinkHasFocus(NavLink.Cart);
+
+	await cart.assertItemInCart("Frozen Tops For Kids", "", "", "");
+	await cart.clickByText('Proceed To Checkout');
+
+    await checkoutModal.clickRegisterLoginButton();
+
+	
 	//7. Click Proceed To Checkout
 	//8. Click 'Register / Login' button
 	//9. Fill all details in Signup and create account

@@ -16,10 +16,15 @@ export async function scrollAndClickElement(page: Page, xpath: string): Promise 
     await element.click();
 }
 
+// Click element given the Xpath
+export async function clickElementByXpath(page: Page, xpath: string): Promise<void> {
+    const element = page.locator(`xpath=${xpath}`);
+    await element.waitFor({ state: 'visible' });
+    await element.click();
+}
 
-/**
- * Clicks a visible element, retrying if it's temporarily blocked
- */
+
+// Clicks a visible element, retrying if it's temporarily blocked
 export async function safeClick(page: Page, selector: string): Promise<void> {
     const element = page.locator(selector);
     await element.waitFor({ state: 'visible' });
