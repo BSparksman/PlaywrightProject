@@ -25,6 +25,13 @@
   - Reproducible:
 	- Yes, every time the site is viewed on a mobile device or responsive layout.
 
+- Issue 4:
+  - Description:
+	- There are two add to cart buttons on the product page which is a poor design and experience.
+  - Found by: Exploring the site
+  - Reproducible:
+	- Yes, every time the product is hovered over.
+
 ---
 
 ## Links

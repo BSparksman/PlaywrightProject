@@ -23,10 +23,31 @@ export async function clickElementByXpath(page: Page, xpath: string): Promise<vo
     await element.click();
 }
 
-
 // Clicks a visible element, retrying if it's temporarily blocked
 export async function safeClick(page: Page, selector: string): Promise<void> {
     const element = page.locator(selector);
     await element.waitFor({ state: 'visible' });
     await element.click();
 }
+
+// type into a field given the Xpath
+export async function typeIntoField(page: Page, xpath: string, text: string): Promise<void> {
+    const field = page.locator(`xpath=${xpath}`);
+    await field.waitFor({ state: 'visible' });
+    await field.fill(text);
+}
+
+export async function clickRadioButtonWithValue(page: Page, radioName: string, value: string): Promise < void> {
+    const xpath = `//input[@type='radio' and @name='${radioName}' and @value='${value}']`;
+    await clickElementByXpath(page, xpath);
+}
+
+//select from select dropdown
+export async function selectFromDropdown(page: Page, name: string, value: string): Promise<void> {
+    const xpath = `//select[@name='${name}']`;
+    const dropdown = page.locator(xpath);
+    await dropdown.waitFor({ state: 'visible' });
+    await dropdown.selectOption(value);
+}
+
+

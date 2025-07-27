@@ -3,9 +3,10 @@ import { HomePage } from '@pages/HomePage';
 import { AddedToCartModal } from '@modals/addedToCartModal';
 import { CheckoutModal } from '@modals/checkoutModal';
 import { CartPage } from '@pages/CartPage';
+import { LoginPage } from '@pages/LoginPage';
 import { Navigation } from '../../components/navigation';
 import { createUser } from '@utils/userFactory';
-import { NavLink } from '@models/navLinks';
+import { SignUpPage } from '@pages/SignUpPage';
 
 
 test.beforeEach(async ({ page }) => {
@@ -18,26 +19,27 @@ test('Place Order: Register While Checkout', async ({ page }) => {
 	const addedToCartModal = new AddedToCartModal(page);
     const checkoutModal = new CheckoutModal(page);
 	const cart = new CartPage(page);
-    const navigation = new Navigation(page);
+	const login = new LoginPage(page);
+    const signup = new SignUpPage(page);
+	const navigation = new Navigation(page);
 
-	await navigation.expectOnPage('');
-	await navigation.assertNavLinkHasFocus(NavLink.Home);
+    await navigation.assertHomeDisplayed();
 	// TODO: Dynamic Product Selection: If "Frozen Tops For Kids" changes or disappears, tests may break.
 	await home.AddProductToCart("Frozen Tops For Kids");
 	await addedToCartModal.viewCart();
-
-	//await navigation.clickNavLink(NavLink.Cart);
-	await navigation.expectOnPage('view_cart');
-	await navigation.assertNavLinkHasFocus(NavLink.Cart);
+	await navigation.assertCartDisplayed
 
 	await cart.assertItemInCart("Frozen Tops For Kids", "", "", "");
 	await cart.clickByText('Proceed To Checkout');
 
-    await checkoutModal.clickRegisterLoginButton();
+	await checkoutModal.clickRegisterLoginButton();
+    await navigation.assertLoginDisplayed();
+	await login.enterCredentials(user.name, user.email);
+    await login.clickSignUpButton();
 
-	
-	//7. Click Proceed To Checkout
-	//8. Click 'Register / Login' button
+    await signup.fillOutSignUpForm(user);
+
+
 	//9. Fill all details in Signup and create account
 	//10. Verify 'ACCOUNT CREATED!' and click 'Continue' button
 	//11. Verify ' Logged in as username' at top

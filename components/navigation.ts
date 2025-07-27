@@ -9,6 +9,27 @@ export class Navigation {
         await this.page.getByRole('link', { name: navLink }).click();
     }
 
+    // TODO: Consider adding these asserts into a single method.
+    async assertHomeDisplayed() {
+        await this.expectOnPage("");
+        await this.assertNavLinkHasFocus(NavLink.Home);
+    }
+
+    async assertCartDisplayed() {
+        await this.expectOnPage("view_cart");
+        await this.assertNavLinkHasFocus(NavLink.Cart);
+    }
+
+    async assertSignUpDisplayed() {
+        await this.expectOnPage("signup");
+        await this.assertNavLinkHasFocus(NavLink.SignUpLogin);
+    }
+
+    async assertLoginDisplayed() {
+        await this.expectOnPage("login");
+        await this.assertNavLinkHasFocus(NavLink.SignUpLogin);
+    }
+
     async assertNavLinkHasFocus(navLink: NavLink) {
         const homeLink = this.page.getByRole('link', { name: navLink });
         const color = await homeLink.evaluate((el) => getComputedStyle(el).color);
