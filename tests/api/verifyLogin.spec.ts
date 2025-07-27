@@ -3,7 +3,7 @@ import { getEnvConfig } from '@config/env.config';
 
 test('API – Verify Login with valid credentials', async ({ request }) => {
     const { password } = getEnvConfig();
-    const email = 'Test20@test.com';
+    const email = 'Hal_Walsh@gmail.com';
 
     const response = await request.post('https://automationexercise.com/api/verifyLogin', {
         headers: {
