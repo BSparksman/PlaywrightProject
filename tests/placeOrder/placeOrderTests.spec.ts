@@ -16,7 +16,7 @@ test.beforeEach(async ({ page }) => {
 	await page.goto('/');
 });
 
-test('Place Order: Register While Checkout', async ({ page }) => {
+test('#14: Place Order: Register While Checkout', async ({ page }) => {
 	const user = createUser();
 	const navigation = new Navigation(page);
 	const home = new HomePage(page);
@@ -75,4 +75,44 @@ test('Place Order: Register While Checkout', async ({ page }) => {
 	//19. Click 'Delete Account' button
     await navigation.clickNavLink(NavLink.DeleteAccount);
 	//20. Verify 'ACCOUNT DELETED!' and click 'Continue' button
+});
+
+test('#15: Place Order: Register Before Checkout', async ({ page }) => {
+	const user = createUser();
+	const navigation = new Navigation(page);
+	const home = new HomePage(page);
+	const addedToCartModal = new AddedToCartModal(page);
+	const checkout = new CheckoutPage(page);
+	const cart = new CartPage(page);
+	const login = new LoginPage(page);
+	const signup = new SignUpPage(page);
+	const accountCreaated = new AccountCreatedPage(page);
+
+	await navigation.assertHomeDisplayed();
+	await navigation.clickNavLink(NavLink.SignUpLogin);
+	await navigation.assertLoginDisplayed();
+	await login.enterCredentials(user.name, user.email);
+	await login.clickSignUpButton();
+	await signup.fillOutSignUpForm(user);
+	await accountCreaated.assertSuccessMessage("Account Created!");
+	await accountCreaated.clickContinueButton();
+	await home.AddProductToCart("Frozen Tops For Kids");
+	await addedToCartModal.viewCart();
+	await navigation.assertCartDisplayed();
+	await cart.assertItemInCart("Frozen Tops For Kids", "", "", "");
+	await cart.clickByText('Proceed To Checkout');
+	await navigation.assertLoggedInAs(user.name);
+	await navigation.clickNavLink(NavLink.Cart);
+	await cart.clickProceedToCheckoutButton();
+	await checkout.assertAddressDetails(
+		user.title,
+		user.name,
+		user.address,
+		user.city,
+		user.country,
+		user.mobileNumber
+	);
+	await checkout.enterOrderComment("This is a test order.");
+	await checkout.clickPlaceOrderButton();
+	await navigation.clickNavLink(NavLink.DeleteAccount);
 });

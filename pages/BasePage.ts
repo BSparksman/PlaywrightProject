@@ -1,6 +1,10 @@
 import { Page } from '@playwright/test';
 import { clickByText } from '@utils/baseHelpers';
 
+/*
+    The basePage module provides a base class for all page objects in the Playwright framework.
+    It includes common functionality that can be shared across different page objects.
+*/
 export class BasePage {
     constructor(protected page: Page) { }
 
