@@ -1,8 +1,11 @@
 import { Page } from '@playwright/test';
 
-/**
- * Waits for and clicks on an element containing exact text
- */
+/*
+    The baseHelpers module provides utility functions for interacting with web elements in Playwright.
+    These functions include clicking elements by text, scrolling and clicking elements by XPath.
+*/
+
+//Waits for and clicks on an element containing exact text
 export async function clickByText(page: Page, text: string): Promise<void> {
     await page.getByText(text).click();
 }
