@@ -19,7 +19,6 @@ Clone the repository:
 Make sure you have the following installed:
 
 - Node.js (v18 or higher)
-- npm (comes with Node.js)
 
 Then install dependencies:
 
@@ -51,7 +50,7 @@ Set your environment:
 
 **Option 2: Terminal override**
 
-- `TEST_ENV=test npx playwright test`
+- `$env:ENV_NAME="dev"; npx playwright test`
 
 Tests will automatically skip if the base URL is unreachable.
 
@@ -69,11 +68,12 @@ Run in headed mode (browser UI visible):
 
 Run a specific test file:
 
-- `npx playwright test tests/placeOrderWhileCheckout.spec.ts`
+- `npx playwright test tests/placeOrder/placeOrderTests.spec.ts --headed`
+- `npx playwright test tests/api/createAccount.spec.ts --headed`
 
 Switch environments on the fly:
 
-- `TEST_ENV=test npx playwright test`
+- `$env:ENV_NAME="dev"; npx playwright test`
 
 ---
 
@@ -81,7 +81,7 @@ Switch environments on the fly:
 
 - Parallel test execution is supported natively by Playwright.
 - Tests intelligently skip when the target environment is offline.
-- Consider adding health checks or mock layers for isolated API testing.
+- TODO: Adding health checks or mock layers for isolated API testing.
 
 
 ---

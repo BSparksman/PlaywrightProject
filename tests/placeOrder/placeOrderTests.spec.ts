@@ -66,10 +66,14 @@ test('Place Order: Register While Checkout', async ({ page }) => {
 		user.mobileNumber
 	);
 
-	//15. Enter description in comment text area and click 'Place Order'
+	await cart.clickProceedToCheckoutButton();
+	await checkout.enterOrderComment("This is a test order.");
+	await checkout.clickPlaceOrderButton();
+
 	//16. Enter payment details: Name on Card, Card Number, CVC, Expiration date
 	//17. Click 'Pay and Confirm Order' button
 	//18. Verify success message 'Your order has been placed successfully!'
 	//19. Click 'Delete Account' button
+    await navigation.clickNavLink(NavLink.DeleteAccount);
 	//20. Verify 'ACCOUNT DELETED!' and click 'Continue' button
 });

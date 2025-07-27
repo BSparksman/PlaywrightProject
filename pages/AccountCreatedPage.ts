@@ -8,7 +8,6 @@ export class AccountCreatedPage extends BasePage {
         await scrollAndClickElement(this.page, "//a[@data-qa='continue-button']");
     }
 
-    //assert text
     async assertSuccessMessage(successText: string): Promise<void> {
         await assertText(this.page, "account-created", successText);
     }

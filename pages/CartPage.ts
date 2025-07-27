@@ -17,8 +17,8 @@ export class CartPage extends BasePage {
     async removeItemFromCart(productName: string): Promise<void> {
     }
 
-    async clickProceedToCartButton(productName: string): Promise<void> {
-        const xpath = `(//div[@class='features_items']//p[text()='${productName}'])[1]`;
+    async clickProceedToCheckoutButton(): Promise<void> {
+        const xpath = `//a[@class='btn btn-default check_out' and text()='Proceed To Checkout']`;
         await scrollAndClickElement(this.page, xpath);
     }
 }
