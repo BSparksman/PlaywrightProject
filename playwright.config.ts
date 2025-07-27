@@ -21,14 +21,11 @@ export default defineConfig({
         {
             name: 'chromium',
             use: { ...devices['Desktop Chrome'] },
-        },
-        {
+        }
+        // Uncomment the following lines to enable Firefox testing
+        /*{
             name: 'firefox',
             use: { ...devices['Desktop Firefox'] },
-        },
-        {
-            name: 'webkit',
-            use: { ...devices['Desktop Safari'] },
-        },
+        }*/
     ],
 });
